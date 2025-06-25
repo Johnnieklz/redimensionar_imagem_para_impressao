@@ -16,6 +16,12 @@ ENV/
 .venv/
 .Python
 
+# Python (backend)
+backend/__pycache__/
+backend/*.pyc
+backend/env/
+backend/.env
+
 # VSCode
 .vscode/
 
