@@ -22,21 +22,21 @@ cd redimensionar-imagem-para-impressao
 ### 2. Instale as dependências do backend
 
 ```sh
-cd redimensionar-imagem/src
-pip install flask flask-cors pillow
+cd backend
+pip install -r requirements.txt
 ```
 
 ### 3. Instale as dependências do frontend
 
 ```sh
-cd ../
+cd ../frontend
 npm install
 ```
 
 ### 4. Execute o backend
 
 ```sh
-cd src
+cd ../backend
 python app.py
 ```
 
@@ -45,6 +45,7 @@ python app.py
 Abra outro terminal e rode:
 
 ```sh
+cd frontend
 npm start
 ```
 
@@ -56,6 +57,7 @@ Para servir tudo pelo Flask:
 
 1. Gere o build do React:
     ```sh
+    cd frontend
     npm run build
     ```
 2. Configure o Flask para servir os arquivos estáticos do build.
