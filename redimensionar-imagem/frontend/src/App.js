@@ -69,6 +69,11 @@ function App() {
     link.click();
   };
 
+  const handlePagamento = async () => {
+    const pref = await criarPagamento('Redimensionamento de Imagem', 10.0);
+    window.open(pref.init_point, '_blank');
+  };
+
   return (
     <div className="container">
       <h1>Redimensionador de Imagens</h1>
@@ -213,10 +218,36 @@ function App() {
               download
             </span>
           </button>
+
+          <button className="pagar" onClick={handlePagamento}>
+            Pagar com Mercado Pago
+            <span className="material-symbols-outlined" style={{ verticalAlign: 'middle', marginLeft: 8 }}>
+              payment
+            </span>
+          </button>
         </div>
       </div>
     </div>
   );
+}
+
+// Exemplo em src/App.js ou em um arquivo utils/api.js
+async function criarPagamento(titulo, valor) {
+  try {
+    const response = await fetch(`${process.env.REACT_APP_API_URL}/criar-pagamento`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ titulo, valor })
+    });
+
+    if (!response.ok) throw new Error('Erro ao criar pagamento');
+
+    return await response.json();
+  } catch (error) {
+    console.error('Erro:', error);
+    alert('Erro ao iniciar pagamento.');
+    return {};
+  }
 }
 
 export default App;
